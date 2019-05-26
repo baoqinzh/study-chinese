@@ -373,14 +373,31 @@ function complete() {
 function add_practice() {
   practice_num = 0;
   add_max_total = document.getElementById('add_max_total').value;
+  if (checkPracticeMaxNum()) {
+    next_add_practice();
+  }
+}
+function checkPracticeMaxNum() {
   practice_max_num = document.getElementById('practice_max_num').value;
-  next_add_practice();
+  if (practice_max_num <= 0) {
+    alert('题目总数不能小于等于0！');
+    document.getElementById('practice_max_num').value = 5;
+    document.getElementById('practice_max_num').focus();
+    return false;
+  } else if (practice_max_num > 20) {
+    alert('题目总数太多了，宝宝会累到的。请减少题目数量到20！');
+    document.getElementById('practice_max_num').value = 20;
+    document.getElementById('practice_max_num').focus();
+    return false;
+  }
+  return true;
 }
 function sub_practice() {
   practice_num = 0;
   sub_max_total = document.getElementById('sub_max_total').value;
-  practice_max_num = document.getElementById('practice_max_num').value;
-  next_sub_practice();
+  if (checkPracticeMaxNum()) {
+    next_sub_practice();
+  }
 }
 function checkMathAnswer(operater) {
   let num_total = document.getElementById('num_total').value;
