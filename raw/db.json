@@ -1,168 +1,199 @@
 {
-  "groups":[
-    {
-      "id":0,
-      "name":"第一组",
-      "group":"youerhanyu1Gp1"
+  "groups": [{
+      "id": 0,
+      "name": "第一组",
+      "group": "youerhanyu1Gp1"
     },
-    {
-      "id":1,
-      "name":"第二组",
-      "group":"youerhanyu1Gp2"
-    },
-    {
-      "id":2,
-      "name":"第三组",
-      "group":"youerhanyu1Gp3"
-    },
-    {
-      "id":3,
-      "name":"第四组",
-      "group":"youerhanyu1Gp4"
-    },
-    {
-      "id":4,
-      "name":"第五组",
-      "group":"youerhanyu1Gp5"
-    }
-  ],
-  "youerhanyu1Gp1": [
     {
       "id": 1,
+      "name": "第二组",
+      "group": "youerhanyu1Gp2"
+    },
+    {
+      "id": 2,
+      "name": "第三组",
+      "group": "youerhanyu1Gp3"
+    },
+    {
+      "id": 3,
+      "name": "第四组",
+      "group": "youerhanyu1Gp4"
+    },
+    {
+      "id": 4,
+      "name": "第五组",
+      "group": "youerhanyu1Gp5"
+    }
+  ],
+  "rightSoundPool": [{
+      "id": 0,
+      "soundUrl": "zhenbang"
+    },
+    {
+      "id": 1,
+      "soundUrl": "daduile"
+    },
+    {
+      "id": 2,
+      "soundUrl": "zhenlihai"
+    },
+    {
+      "id": 3,
+      "soundUrl": "bangjile"
+    },
+    {
+      "id": 4,
+      "soundUrl": "taibangle"
+    }
+  ],
+  "wrongSoundPool": [{
+      "id": 0,
+      "soundUrl": "dacuole"
+    },
+    {
+      "id": 1,
+      "soundUrl": "zaishishi"
+    },
+    {
+      "id": 2,
+      "soundUrl": "zailaiyici"
+    },
+    {
+      "id": 3,
+      "soundUrl": "jiayou"
+    }
+  ],
+  "youerhanyu1Gp1": [{
+      "id": 1,
       "displayName": "妈妈",
-	  "soundUrl":"mama"
+      "soundUrl": "mama"
     },
     {
       "id": 2,
       "displayName": "爸爸",
-	  "soundUrl":"baba"
+      "soundUrl": "baba"
     },
-	{
+    {
       "id": 3,
       "displayName": "姐姐",
-	  "soundUrl":"jiejie"
+      "soundUrl": "jiejie"
     },
     {
       "id": 4,
       "displayName": "宝宝",
-	  "soundUrl":"baobao"
-    },	
+      "soundUrl": "baobao"
+    },
     {
       "id": 5,
       "displayName": "老师",
-	  "soundUrl":"laoshi"
-    }
-	],
-	"youerhanyu1Gp2":[
-	{
-      "id": 6,
-      "displayName": "你",
-	  "soundUrl":"ni"
-    },	
-	{
-      "id": 7,
-      "displayName": "我",
-	  "soundUrl":"wo"
-    },
-	{
-      "id": 8,
-      "displayName": "她",
-	  "soundUrl":"nvta"
-    },
-	{
-      "id": 9,
-      "displayName": "他",
-	  "soundUrl":"nanta"
-    },	
-	{
-      "id": 10,
-      "displayName": "它",
-	  "soundUrl":"dongta"
-    }
-	],
-	"youerhanyu1Gp3":[
-	{
-      "id": 11,
-      "displayName": "我们",
-	  "soundUrl":"women"
-    },
-	{
-      "id": 12,
-      "displayName": "你们",
-	  "soundUrl":"nimen"
-    },
-	{
-      "id": 13,
-      "displayName": "她们",
-	  "soundUrl":"nvtamen"
-    },
-	{
-      "id": 14,
-      "displayName": "他们",
-	  "soundUrl":"nantamen"
-    },
-	{
-      "id": 15,
-      "displayName": "它们",
-	  "soundUrl":"dongtamen"
-    }
-	],
-	"youerhanyu1Gp4":[
-	{
-      "id": 16,
-      "displayName": "医生",
-	  "soundUrl":"yisheng"
-    },
-	{
-      "id": 17,
-      "displayName": "邮递员",
-	  "soundUrl":"youdiyuan"
-    },
-	{
-      "id": 18,
-      "displayName": "警察",
-	  "soundUrl":"jingcha"
-    },
-	{
-      "id": 19,
-      "displayName": "对不起",
-	  "soundUrl":"duibuqi"
-    },
-	{
-      "id": 20,
-      "displayName": "没关系",
-	  "soundUrl":"meiguanxi"
-    }
-	],
-	"youerhanyu1Gp5":[
-	{
-      "id": 21,
-      "displayName": "你好",
-	  "soundUrl":"nihao"
-    },
-	{
-      "id": 22,
-      "displayName": "再见",
-	  "soundUrl":"zaijian"
-    },
-	{
-      "id": 23,
-      "displayName": "谢谢",
-	  "soundUrl":"xiexie"
-    },
-	{
-      "id": 24,
-      "displayName": "什么",
-	  "soundUrl":"shenmo"
-    },
-	{
-      "id": 25,
-      "displayName": "名字",
-	  "soundUrl":"mingzi"
+      "soundUrl": "laoshi"
     }
   ],
-  "people": [
+  "youerhanyu1Gp2": [{
+      "id": 6,
+      "displayName": "你",
+      "soundUrl": "ni"
+    },
     {
+      "id": 7,
+      "displayName": "我",
+      "soundUrl": "wo"
+    },
+    {
+      "id": 8,
+      "displayName": "她",
+      "soundUrl": "nvta"
+    },
+    {
+      "id": 9,
+      "displayName": "他",
+      "soundUrl": "nanta"
+    },
+    {
+      "id": 10,
+      "displayName": "它",
+      "soundUrl": "dongta"
+    }
+  ],
+  "youerhanyu1Gp3": [{
+      "id": 11,
+      "displayName": "我们",
+      "soundUrl": "women"
+    },
+    {
+      "id": 12,
+      "displayName": "你们",
+      "soundUrl": "nimen"
+    },
+    {
+      "id": 13,
+      "displayName": "她们",
+      "soundUrl": "nvtamen"
+    },
+    {
+      "id": 14,
+      "displayName": "他们",
+      "soundUrl": "nantamen"
+    },
+    {
+      "id": 15,
+      "displayName": "它们",
+      "soundUrl": "dongtamen"
+    }
+  ],
+  "youerhanyu1Gp4": [{
+      "id": 16,
+      "displayName": "医生",
+      "soundUrl": "yisheng"
+    },
+    {
+      "id": 17,
+      "displayName": "邮递员",
+      "soundUrl": "youdiyuan"
+    },
+    {
+      "id": 18,
+      "displayName": "警察",
+      "soundUrl": "jingcha"
+    },
+    {
+      "id": 19,
+      "displayName": "对不起",
+      "soundUrl": "duibuqi"
+    },
+    {
+      "id": 20,
+      "displayName": "没关系",
+      "soundUrl": "meiguanxi"
+    }
+  ],
+  "youerhanyu1Gp5": [{
+      "id": 21,
+      "displayName": "你好",
+      "soundUrl": "nihao"
+    },
+    {
+      "id": 22,
+      "displayName": "再见",
+      "soundUrl": "zaijian"
+    },
+    {
+      "id": 23,
+      "displayName": "谢谢",
+      "soundUrl": "xiexie"
+    },
+    {
+      "id": 24,
+      "displayName": "什么",
+      "soundUrl": "shenmo"
+    },
+    {
+      "id": 25,
+      "displayName": "名字",
+      "soundUrl": "mingzi"
+    }
+  ],
+  "people": [{
       "id": 1,
       "name": "John",
       "statusMsg": "Imagine all the people ...",
