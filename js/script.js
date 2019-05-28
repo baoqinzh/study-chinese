@@ -15,6 +15,7 @@ var practice_num = 0;
 var practice_max_num = 5;
 var add_max_total = 10;
 var sub_max_total = 10;
+var real_math_oper = [];
 
 function init() {
   document.getElementById("goToStudy").addEventListener("click", goToStudy);
@@ -300,66 +301,83 @@ function goToMath() {
   stopStudy();
   loadSound();
   let output = `
-    <div class = 'list-group-item'>
-      <h3 class="mb-4 text-center">家长设置</h3>
-      <h5 class="mb-4 text-left">题目总数:
-        <input type = 'number' id = 'practice_max_num' style='width:100px' value='5'>
-      </h5>
-      <h5 class="mb-4 text-left">加法，总和不超过:
-      <input type = 'number' id = 'add_max_total' style='width:100px' value='10'>
-        <input type = 'button' class="btn btn-success mr-4" value='开始' onclick = add_practice()>
-      </h5>
-      <h5 class="mb-4 text-left">减法，被减数不超过:
-        <input type = 'number' id = 'sub_max_total' style='width:100px' value='10'>
-        <input type = 'button' class="btn btn-success mr-4" value='开始' onclick = sub_practice()>
-      </h5>
-    </div>
+    <form>
+      <div class = 'list-group-item'>
+        <h3 class="mb-4 text-center">家长设置</h3>
+        <h5 class="mb-4 text-left">题目总数:
+          <input type = 'number' id = 'practice_max_num' style='width:100px' value='5'>
+        </h5>
+        <h5 class="mb-4 text-left"><input type="checkbox" name="mathOper" value="+" checked>加法，总和不超过:
+        <input type = 'number' id = 'add_max_total' style='width:100px' value='10'>
+        </h5>
+        <h5 class="mb-4 text-left"><input type="checkbox" name="mathOper" value="-">减法，被减数不超过:
+          <input type = 'number' id = 'sub_max_total' style='width:100px' value='10'>
+        </h5>
+        <h5 class="">
+        <input type = 'button' class="btn btn-success mr-4" value='开始' onclick = mathOperation()>
+        </h5>
+      </div>
+    </form>
   `;
   document.getElementById("output").innerHTML = output;
 }
 
-function next_add_practice() {
-  console.log('practice_num = ', practice_num);
+function mathOperation() {
+  var mathOper = document.forms[0];
+  checkPracticeMaxNum();
+  practice_num = 0;
+  add_max_total = document.getElementById('add_max_total').value;
+  sub_max_total = document.getElementById('sub_max_total').value;
+  real_math_oper = [];
+  for (let i = 0; i < mathOper.length; i++) {
+    if (mathOper[i].checked) {
+      real_math_oper.push(mathOper[i].value);
+    }
+  }
+  next_math_practice();
+}
+
+function next_math_practice() {
   if (practice_num < practice_max_num) {
     practice_num = practice_num + 1;
-    let num_1 = getRandomInt(add_max_total);
-    let num_2 = getRandomInt(add_max_total - num_1);
-    let output = `
-    <div class = 'list-group-item'>
-        <h3 class="mb-4 text-right"><input type = 'number' id='num_1' style='display:none' value = ${num_1}>${num_1}</h3>
-        <h3 class="mb-4 text-right"><input type = 'number' id='num_2' style='display:none' value = ${num_2}>+${num_2}</h3>
-        <h3 class="mb-4 text-right">______</h3>
-        <h3 class="mb-4 text-right">
-        <input type = 'number' id = 'num_total' style='width:100px' onChange='checkMathAnswer("add")'></h3>
-      </div>
-    `;
+    let tmp_oper = "";
+    if (real_math_oper.length <= 1) {
+      tmp_oper = real_math_oper;
+    } else {
+      tmp_oper = real_math_oper[getRandomInt(real_math_oper.length)];
+    }
+    let output = "";
+    let num_1 = 0;
+    let num_2 = 0;
+    if (tmp_oper == "+") {
+      num_1 = getRandomInt(add_max_total);
+      num_2 = getRandomInt(add_max_total - num_1);
+      output = math_out_put('+', num_1, num_2);
+    } else if (tmp_oper == "-") {
+      num_1 = getRandomInt(sub_max_total);
+      num_2 = getRandomInt(num_1);
+      output = math_out_put('-', num_1, num_2);
+    }
+
     document.getElementById("output").innerHTML = output;
     document.getElementById("num_total").focus();
   } else {
     complete();
   }
 }
-function next_sub_practice() {
-  console.log('practice_num = ', practice_num);
-  if (practice_num < practice_max_num) {
-    practice_num = practice_num + 1;
-    let num_1 = getRandomInt(sub_max_total);
-    let num_2 = getRandomInt(num_1);
-    let output = `
-    <div class = 'list-group-item'>
-        <h3 class="mb-4 text-right"><input type = 'number' id='num_1' style='display:none' value = ${num_1}>${num_1}</h3>
-        <h3 class="mb-4 text-right"><input type = 'number' id='num_2' style='display:none' value = ${num_2}>-${num_2}</h3>
-        <h3 class="mb-4 text-right">______</h3>
-        <h3 class="mb-4 text-right">
-        <input type = 'number' id = 'num_total' style='width:100px' onChange='checkMathAnswer("sub")'></h3>
-      </div>
-    `;
-    document.getElementById("output").innerHTML = output;
-    document.getElementById("num_total").focus();
-  } else {
-    complete();
-  }
+
+function math_out_put(operater, num_1, num_2) {
+  return `
+  <div class = 'list-group-item'>
+      <h3 class="mb-4 text-right"><input type = 'number' id='num_1' style='display:none' value = ${num_1}>${num_1}</h3>
+      <h3 class="mb-4 text-right"><input type = 'number' id='num_2' style='display:none' value = ${num_2}>${operater}${num_2}</h3>
+      <h3 class="mb-4 text-right">______</h3>
+      <h3 class="mb-4 text-right">
+      <input type = 'number' id = 'num_total' style='width:100px' onChange='checkMathAnswer("${operater}")'></h3>
+    </div>
+  `;
 }
+
 function complete() {
   let output = `
   <div class = 'list-group-item'>
@@ -370,13 +388,7 @@ function complete() {
   `;
   document.getElementById("output").innerHTML = output;
 }
-function add_practice() {
-  practice_num = 0;
-  add_max_total = document.getElementById('add_max_total').value;
-  if (checkPracticeMaxNum()) {
-    next_add_practice();
-  }
-}
+
 function checkPracticeMaxNum() {
   practice_max_num = document.getElementById('practice_max_num').value;
   if (practice_max_num <= 0) {
@@ -392,29 +404,21 @@ function checkPracticeMaxNum() {
   }
   return true;
 }
-function sub_practice() {
-  practice_num = 0;
-  sub_max_total = document.getElementById('sub_max_total').value;
-  if (checkPracticeMaxNum()) {
-    next_sub_practice();
-  }
-}
+
 function checkMathAnswer(operater) {
   let num_total = document.getElementById('num_total').value;
   let num_1 = Number(document.getElementById('num_1').value);
   let num_2 = Number(document.getElementById('num_2').value);
-  if (operater == 'add') {
-    if (checkAnswer(num_total, num_1 + num_2)) {
-      next_add_practice();
-    } else {
-      document.getElementById('num_total').focus();
-    }
-  } else if (operater == 'sub') {
-    if (checkAnswer(num_total, num_1 - num_2)) {
-      next_sub_practice();
-    } else {
-      document.getElementById('num_total').focus();
-    }
+  let tmp_num_total = 0;
+  if (operater == '+') {
+    tmp_num_total = num_1 + num_2;
+  } else if (operater == '-') {
+    tmp_num_total = num_1 - num_2;
+  }
+  if (checkAnswer(num_total, tmp_num_total)) {
+    next_math_practice();
+  } else {
+    document.getElementById('num_total').focus();
   }
 }
 function playSound(e) {
