@@ -1,5 +1,6 @@
 {
-  "groups": [{
+  "groups": [
+    {
       "id": 0,
       "name": "第一组",
       "group": "youerhanyu1Gp1"
@@ -25,7 +26,8 @@
       "group": "youerhanyu1Gp5"
     }
   ],
-  "rightSoundPool": [{
+  "rightSoundPool": [
+    {
       "id": 0,
       "soundUrl": "zhenbang"
     },
@@ -46,7 +48,8 @@
       "soundUrl": "taibangle"
     }
   ],
-  "wrongSoundPool": [{
+  "wrongSoundPool": [
+    {
       "id": 0,
       "soundUrl": "dacuole"
     },
@@ -63,7 +66,8 @@
       "soundUrl": "jiayou"
     }
   ],
-  "youerhanyu1Gp1": [{
+  "youerhanyu1Gp1": [
+    {
       "id": 1,
       "displayName": "妈妈",
       "soundUrl": "mama"
@@ -89,7 +93,8 @@
       "soundUrl": "laoshi"
     }
   ],
-  "youerhanyu1Gp2": [{
+  "youerhanyu1Gp2": [
+    {
       "id": 6,
       "displayName": "你",
       "soundUrl": "ni"
@@ -115,7 +120,8 @@
       "soundUrl": "dongta"
     }
   ],
-  "youerhanyu1Gp3": [{
+  "youerhanyu1Gp3": [
+    {
       "id": 11,
       "displayName": "我们",
       "soundUrl": "women"
@@ -141,7 +147,8 @@
       "soundUrl": "dongtamen"
     }
   ],
-  "youerhanyu1Gp4": [{
+  "youerhanyu1Gp4": [
+    {
       "id": 16,
       "displayName": "医生",
       "soundUrl": "yisheng"
@@ -167,7 +174,8 @@
       "soundUrl": "meiguanxi"
     }
   ],
-  "youerhanyu1Gp5": [{
+  "youerhanyu1Gp5": [
+    {
       "id": 21,
       "displayName": "你好",
       "soundUrl": "nihao"
@@ -193,7 +201,8 @@
       "soundUrl": "mingzi"
     }
   ],
-  "people": [{
+  "people": [
+    {
       "id": 1,
       "name": "John",
       "statusMsg": "Imagine all the people ...",

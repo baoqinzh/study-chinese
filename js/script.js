@@ -24,9 +24,23 @@ function init() {
   document.getElementById("goToMath").addEventListener("click", goToMath);
   document.getElementById("getGroupList").addEventListener("click", getGroupList);
   document.getElementById("getDataList").addEventListener("click", getDataList);
+  document.getElementById("getTextBook4").addEventListener("click", getTextBook4);
+
   getData();
 }
 
+function getTextBook4() {
+  var params = [
+    'height=' + screen.height,
+    'width=750' + //screen.width,
+    'fullscreen=yes' + // only works in IE, but here for completeness
+    'scrollbars=no' +
+    'resizable=yes'
+  ].join(',');
+
+  var popup = window.open('youerhanyu4.html', 'popup_window', params);
+  popup.moveTo(0, 0);
+}
 function getData() {
   fetch("raw/db.json")
     .then(res => res.json())
