@@ -436,7 +436,7 @@ function getTextBook4() {
     'resizable=yes'
   ].join(',');
 
-  var popup = window.open('book.html?book=book4', 'popup_window', params);
+  var popup = window.open('book.html?book=book1', 'popup_window', params);
   popup.moveTo(0, 0);
 }
 
