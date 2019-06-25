@@ -15,14 +15,21 @@ var practice_max_num = 5;
 var add_max_total = 10;
 var sub_max_total = 10;
 var real_math_oper = [];
+var book = "book4";
+var bookContents = "bookContents4";
 
 function init() {
+  document.getElementById("book1").addEventListener("click", function () { changeBook("1") });
+  document.getElementById("book2").addEventListener("click", function () { changeBook("2") });
+  document.getElementById("book3").addEventListener("click", function () { changeBook("3") });
+  document.getElementById("book4").addEventListener("click", function () { changeBook("4") });
+
   document.getElementById("goToStudy").addEventListener("click", goToStudy);
   document.getElementById("goToPractice").addEventListener("click", goToPractice);
   document.getElementById("goToMath").addEventListener("click", goToMath);
   document.getElementById("getGroupList").addEventListener("click", getGroupList);
   document.getElementById("getDataList").addEventListener("click", getDataList);
-  document.getElementById("getTextBook4").addEventListener("click", getTextBook4);
+  document.getElementById("readBook").addEventListener("click", readBook);
 
   getData();
 }
@@ -36,6 +43,18 @@ function getData() {
     .catch(err => console.log(err));
 }
 
+function changeBook(N) {
+  stopStudy();
+  let output = "";
+  document.getElementById("output").innerHTML = output;
+  book = "book" + N;
+  bookContents = "bookContents" + N;
+  lesson = data_result[bookContents][0].lesson;
+  for (let t = 1; t <= 4; t++) {
+    document.getElementById("book" + t).className = "btn btn-default";
+  }
+  document.getElementById(book).className = "btn btn-primary";
+}
 function goToStudy() {
   stopStudy();
   study();
@@ -50,10 +69,10 @@ function goToStudy() {
 
 function study() {
   let output = "";
-  if (index >= data_result["book4"].length) {
+  if (index >= data_result[book].length) {
     pauseStudy();
   } else {
-    let item = data_result["book4"][index++];
+    let item = data_result[book][index++];
     let prev_lesson = "";
     let next_lesson = "";
     if (item.lesson_id == lesson_id) {
@@ -61,7 +80,7 @@ function study() {
         prev_lesson = `<button class="btn btn-success mr-4" onclick="changeStudyGroup(${lesson_id -
           1})" id="prevGroup">上一课</button>`;
       }
-      if (lesson_id < data_result["lesson4"].length) {
+      if (lesson_id < data_result[bookContents].length) {
         next_lesson = `<button class="btn btn-success mr-4" onclick="changeStudyGroup(${lesson_id +
           1})" id="nextGroup">下一课</button>`;
       }
@@ -69,7 +88,7 @@ function study() {
               <h2 class="mb-4">${lesson}</h2>
               <div class = 'list-group-item'>
                   <h1 class="display-4 mb-4 text-center">${item.name}</h1>
-                  <audio src = "audio/book4/${
+                  <audio src = "audio/${book}/${
         item.serverUrl
         }" id="audioPlayer"></audio>
                   <input type="button" class="btn btn-primary mr-4" id="pauseStudy" value="停止">
@@ -91,7 +110,7 @@ function changeStudyGroup(tmp_lesson_id) {
 }
 function changeGroup(tmp_lesson_id) {
   lesson_id = tmp_lesson_id;
-  lesson = data_result["lesson4"][tmp_lesson_id - 1].lesson;
+  lesson = data_result[bookContents][tmp_lesson_id - 1].lesson;
 }
 
 function stopStudy() {
@@ -108,10 +127,10 @@ function pauseStudy() {
   document.getElementById("pauseStudy").addEventListener("click", goToStudy);
 }
 
-function getGroupList(group, groupName) {
+function getGroupList() {
   stopStudy();
   let output = "";
-  data_result["lesson4"].forEach(function (item) {
+  data_result[bookContents].forEach(function (item) {
     output += `
             <h2 class="btn-info mb-4" onclick = "changeStudyGroup(${item.lesson_id})">${item.lesson}</h2>
             `;
@@ -125,16 +144,16 @@ function getGroup(lesson, name) {
         <h2 class="mb-4">${name}</h2>
         <ul class="list-group mb-3">
     `;
-  let id_beg = data_result["lesson4"][lesson - 1].id_beg;
-  let id_range = data_result["lesson4"][lesson - 1].id_range;
+  let id_beg = data_result[bookContents][lesson - 1].id_beg;
+  let id_range = data_result[bookContents][lesson - 1].id_range;
   for (i = 1; i <= id_range;) {
-    if (data_result["book4"][id_beg].lesson_id != 0) {
+    if (data_result[book][id_beg].lesson_id != 0) {
       output += `
       <li class="list-group-item" onclick="playSound('audioPlayer_${i}')" >${i}:  <b> ${
-        data_result["book4"][id_beg].name
+        data_result[book][id_beg].name
         }</b>
-          <audio src = "audio/book4/${
-        data_result["book4"][id_beg].serverUrl
+          <audio src = "audio/${book}/${
+        data_result[book][id_beg].serverUrl
         }" id="audioPlayer_${i}"></audio>
       </li>
   `;
@@ -152,7 +171,7 @@ function getDataList() {
   stopStudy();
   audio_num = 1;
   let output = "";
-  data_result["lesson4"].forEach(function (item) {
+  data_result[bookContents].forEach(function (item) {
     output += `
             <h2 class="btn-info mb-4" onclick = "getGroup(${item.lesson_id}, '${
       item.lesson
@@ -169,11 +188,11 @@ function displayItems(lesson_id) {
   let output = `
         <ul class="list-group mb-3">
     `;
-  data_result["book4"].forEach(function (item) {
+  data_result[book].forEach(function (item) {
     if (item.lesson_id == lesson_id) {
       output += `
       <li class="list-group-item" onclick="playSound('audioPlayer_${audio_num}')">${tmp++} : ${item.name}
-      <audio src="audio/book4/${item.serverUrl}" id="audioPlayer_${audio_num++}"></audio>
+      <audio src="audio/${book}/${item.serverUrl}" id="audioPlayer_${audio_num++}"></audio>
       </li >
   `;
     }
@@ -185,7 +204,7 @@ function displayItems(lesson_id) {
 function goToPractice() {
   loadSound();
   stopStudy();
-  index = data_result["lesson4"][lesson_id - 1].id_beg;
+  index = data_result[bookContents][lesson_id - 1].id_beg;
   practice();
 }
 
@@ -196,21 +215,20 @@ function changePracticeGroup(tmp_lesson_id) {
 
 function practice() {
   let output = "";
-  console.log("id_end:", data_result["lesson4"][lesson_id - 1].id_end);
-  if (index >= data_result["lesson4"][lesson_id - 1].id_end) {
+  if (index >= data_result[bookContents][lesson_id - 1].id_end) {
     complete();
     // let prev_lesson = "";
     // let next_lesson = "";
     // if (lesson_id >= 2) {
     //   prev_lesson = `< button class="btn btn-success mr-4" onclick = "changePracticeGroup(${lesson_id - 1})" id = "prevGroup" > 上一课</button > `;
     // }
-    // if (lesson_id < data_result["book4"].length) {
+    // if (lesson_id < data_result[book].length) {
     //   next_lesson = `< button class="btn btn-success mr-4" onclick = "changePracticeGroup(${lesson_id + 1})" id = "nextGroup" > 下一课</button > `;
     // }
     // output = `< h2 class="mb-4 text-right" >${prev_lesson} ${next_lesson}</h2 >`;
     // document.getElementById("output").innerHTML += output;
   } else {
-    let study_item = data_result["book4"][index];
+    let study_item = data_result[book][index];
     if (study_item.lesson_id != lesson_id) {
       index++;
       return practice();
@@ -223,20 +241,19 @@ function practice() {
 
       let tmp_item_arry = [];
       for (let i = 1; i <= 20; i++) {
-        if (data_result["book4"][index + i].lesson_id != 0) {
-          console.log(data_result["book4"][index + i].lesson_id);
-          tmp_item_arry.push(data_result["book4"][index + i]);
+        if (data_result[book][index + i].lesson_id != 0) {
+          tmp_item_arry.push(data_result[book][index + i]);
         }
       }
 
       let t = getRandomInt(5);
-      tmp_item_arry[t] = data_result["book4"][index];
+      tmp_item_arry[t] = data_result[book][index];
 
       for (let i = 0; i <= 4; i++) {
         let item = tmp_item_arry[i];
         output += `<input type="button" class="btn ${getButtonColor()} mr-4" id="${item.id}" onclick="checkStudyAnswer(${study_item.id}, ${item.id})" value="${item.name}">`;
       }
-      output += `  <audio src="audio/book4/${study_item.serverUrl}" id="audioPlayer"></audio>
+      output += `  <audio src="audio/${book}/${study_item.serverUrl}" id="audioPlayer"></audio>
             </div>
               `;
       document.getElementById("output").innerHTML = output;
@@ -259,7 +276,7 @@ function checkAnswer(item_1, item_2) {
 function checkStudyAnswer(lesson_id, id) {
   if (checkAnswer(lesson_id, id)) {
     setTimeout(function () {
-      if (index < data_result["book4"].length) {
+      if (index < data_result[book].length) {
         index = index + 1;
         practice();
       }
@@ -305,13 +322,12 @@ function goToMath() {
     <form>
       <div class='list-group-item'>
         <h3 class="mb-4 text-center">家长设置</h3>
-        <h5 class="mb-4 text-left input-group-addon">题目总数:
-          <input type='number' id='practice_max_num' class="form-control" style='width:100px' value='10'>
+        <h5 class="input-group-addon">题目总数:<input type='number' id='practice_max_num' class="form-control" style='width:100px' value='10'>
         </h5>
-          <h5 class="mb-4 text-left input-group-addon"><input type="checkbox" name="mathOper" value="+" checked>加法，总和不超过:
+          <h5 class="input-group-addon"><input type="checkbox" name="mathOper" value="+" checked>加法，总和不超过:
         <input type='number' id='add_max_total' class="form-control" style='width:100px' value='10'>
         </h5>
-        <h5 class="mb-4 text-left input-group-addon"><input type="checkbox" name="mathOper" value="-">减法，被减数不超过:
+        <h5 class="input-group-addon"><input type="checkbox" name="mathOper" value="-">减法，被减数不超过:
           <input type='number' id='sub_max_total' class="form-control" style='width:100px' value='10'>
         </h5>
         <h5 class="">
@@ -319,7 +335,7 @@ function goToMath() {
         </h5>
       </div>
     </form>
-                      `;
+  `;
   document.getElementById("output").innerHTML = output;
 }
 
@@ -427,7 +443,7 @@ function checkMathAnswer(operater) {
   }
 }
 
-function getTextBook4() {
+function readBook() {
   var params = [
     'height=' + screen.height,
     'width=750' + //screen.width,
@@ -436,7 +452,7 @@ function getTextBook4() {
     'resizable=yes'
   ].join(',');
 
-  var popup = window.open('book.html?book=book1', 'popup_window', params);
+  var popup = window.open('book.html?book=' + book, 'popup_window', params);
   popup.moveTo(0, 0);
 }
 

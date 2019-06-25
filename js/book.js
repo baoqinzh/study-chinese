@@ -70,3 +70,10 @@ function playSound(e) {
     var player = document.getElementById(e);
     player.play();
 }
+var previuosAudio;
+document.addEventListener('play', function (e) {
+    if (previuosAudio && previuosAudio != e.target) {
+        previuosAudio.pause();
+    }
+    previuosAudio = e.target;
+}, true);

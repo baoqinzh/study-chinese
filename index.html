@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>幼儿汉语</title>
   <script src="js/script.js"></script>
-  <link rel="stylesheet" href="css/bootstrap.min.css"
-    integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+  <!-- <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous" /> -->
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <style>
     .jumbotron {
       padding: 0.1rem 0.1rem;
@@ -23,7 +23,13 @@
 <body style="background-color:LightGray;">
   <div class="container jumbotron">
     <h1 class="display-4 mb-4 text-center">
-      <div id="book">幼儿汉语第四册</div>
+      <div class="btn-group btn-group-lg" role="group" aria-label="...">
+        <button type="button" class="btn btn-default" id="book1">幼儿汉语第一册</button>
+        <button type="button" class="btn btn-default" id="book2">幼儿汉语第二册</button>
+        <button type="button" class="btn btn-default" id="book3">幼儿汉语第三册</button>
+        <button type="button" class="btn btn-primary" id="book4">幼儿汉语第四册</button>
+      </div>
+
     </h1>
     <div class="d-flex">
       <button class="btn btn-primary mr-4" id="goToStudy">学习</button>
@@ -31,7 +37,7 @@
       <button class="btn btn-success mr-4" id="goToMath">数学</button>
       <button class="btn btn-warning mr-4" id="getGroupList">选章节</button>
       <button class="btn btn-primary mr-4" id="getDataList">大纲</button>
-      <button class="btn btn-info mr-4" id="getTextBook4">朗读课本</button>
+      <button class="btn btn-info mr-4" id="readBook">朗读课本</button>
     </div>
     <hr />
     <div id="autoplay"></div>
